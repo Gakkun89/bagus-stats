@@ -10,16 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_22_053929) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_22_052431) do
   create_table "exercises", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "exercises_rounds", id: false, force: :cascade do |t|
-    t.integer "round_id", null: false
-    t.integer "exercise_id", null: false
+  create_table "participants", force: :cascade do |t|
+    t.string "name"
+    t.boolean "drop_in"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "results", force: :cascade do |t|
@@ -29,9 +31,9 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_22_053929) do
     t.boolean "rx"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.integer "participant_id"
     t.integer "workout_id"
-    t.index ["user_id"], name: "index_results_on_user_id"
+    t.index ["participant_id"], name: "index_results_on_participant_id"
     t.index ["workout_id"], name: "index_results_on_workout_id"
   end
 
@@ -48,13 +50,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_22_053929) do
     t.index ["workout_id"], name: "index_rounds_on_workout_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.boolean "drop_in"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "workouts", force: :cascade do |t|
     t.datetime "date"
     t.integer "type"
@@ -64,7 +59,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_22_053929) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "results", "users"
+  add_foreign_key "results", "participants"
   add_foreign_key "results", "workouts"
   add_foreign_key "rounds", "exercises"
   add_foreign_key "rounds", "workouts"
