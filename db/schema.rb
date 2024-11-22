@@ -10,11 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_22_052431) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_22_053929) do
   create_table "exercises", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "exercises_rounds", id: false, force: :cascade do |t|
+    t.integer "round_id", null: false
+    t.integer "exercise_id", null: false
   end
 
   create_table "results", force: :cascade do |t|
@@ -25,9 +30,9 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_22_052431) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "round_id"
-    t.index ["round_id"], name: "index_results_on_round_id"
+    t.integer "workout_id"
     t.index ["user_id"], name: "index_results_on_user_id"
+    t.index ["workout_id"], name: "index_results_on_workout_id"
   end
 
   create_table "rounds", force: :cascade do |t|
@@ -59,8 +64,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_22_052431) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "results", "rounds"
   add_foreign_key "results", "users"
+  add_foreign_key "results", "workouts"
   add_foreign_key "rounds", "exercises"
   add_foreign_key "rounds", "workouts"
 end
