@@ -1,1 +1,27 @@
-<p> Hi </p>
+<% @workouts.each do |workout| %>
+  <div class="w-3/4 mx-auto my-6 bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+      <div class="md:flex">
+          <div class="p-6">
+              <a href="#" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
+                <%= workout.date.strftime('%d/%m/%Y') %> - (<%= workout.date.strftime('%a') %>)
+              </a>
+              <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold"><%= Workout::FORMATTED_VARIETY[workout.variety] %></div>
+              <p class="mt-2 text-slate-500"><%= workout.time_cap %> Mins
+              </p>
+          </div>
+          <div class="grid grid-cols-<%= workout.rounds.count %> divide-x">
+            <% workout.rounds.each do |round| %>
+                <div class="p-6 text-center"> <div class="underline"><%= round.number.zero? ? "Strength" : round.number%></div>
+                  <div class="text-sm my-1"> <%= round.exercise.name %> </div>
+                  <% if round.reps.present? %>
+                    <div class="text-sm"> <%= round.reps %> Reps</div>
+                  <% end %>
+                  <% if round.notes.present? %>
+                    <div class="text-sm"> <%= round.notes %> </div>
+                  <% end %>
+                </div>
+            <% end %>
+          </div>
+      </div>
+  </div>
+<% end %>

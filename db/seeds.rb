@@ -29,11 +29,11 @@ end
 
 puts "Seeding Workouts"
 
-dates = [ "2024/11/01", "2024/11/02", "2024/11/03", "2024/11/05", "2024/11/06" ]
+dates = (Date.today.prev_month..Date.today).to_a
 
 dates.each do |date|
   Workout.create!(
-    date: DateTime.parse(date),
+    date: DateTime.parse(date.to_s),
     variety: Workout.varieties.keys.sample,
     time_cap: rand(8..25)
   )
