@@ -1,0 +1,11 @@
+<%= turbo_stream.append "workouts" do %>
+  <%= render partial: "workouts/workout", collection: @workouts %>
+<% end %>
+
+<% if @workouts.next_page %>
+  <%= turbo_stream.replace "load_more" do %>
+    <%= turbo_frame_tag "load_more", src: workouts_path(page: @workouts.next_page, format: :turbo_stream), loading: :lazy %>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.update "current_page", @workouts.current_page %>
