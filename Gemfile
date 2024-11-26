@@ -65,3 +65,5 @@ end
 gem "tailwindcss-rails", "~> 3.0"
 
 gem "will_paginate", "~> 4.0"
+
+gem "simple_calendar", "~> 3.0"

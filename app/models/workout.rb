@@ -10,4 +10,8 @@ class Workout < ApplicationRecord
     "tabata" => "Tabata",
     "emom" => "EMOM"
   }
+
+  def start_time
+    date
+  end
 end
