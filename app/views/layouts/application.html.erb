@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="bg-bg-blue m-0 h-screen background">
   <head>
     <title><%= content_for(:title) || "Bagus Stats" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -23,7 +23,8 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-gradient-to-b from-slate-50 to-zinc-100 m-0 h-screen background">
+  <body>
+    <%= render "layouts/navbar" %>
     <main class="container mx-auto mt-14 px-5 flex flex-col">
       <%= yield %>
     </main>

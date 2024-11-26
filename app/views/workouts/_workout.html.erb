@@ -1,21 +1,21 @@
-<div class="w-3/4 mx-auto my-6 bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl outline outline-offset-2 outline-cyan-200">
-    <div class="md:flex md:divide-x divide-y md:divide-y-0">
+<div class="w-3/4 mx-auto my-6 bg-card-blue rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+    <div class="md:flex md:divide-x divide-y md:divide-y-0 divide-dotted divide-text-blue">
         <div class="p-6">
-            <a href="#" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
+            <a href="#" class="block mt-1 text-base leading-tight font-medium text-text-blue hover:underline">
               <%= workout.date.strftime('%d/%m/%Y') %> - (<%= workout.date.strftime('%a') %>)
             </a>
-            <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold"><%= Workout::FORMATTED_VARIETY[workout.variety] %></div>
+            <div class="uppercase tracking-wide text-sm text-text-blue  font-semibold"><%= Workout::FORMATTED_VARIETY[workout.variety] %></div>
             <p class="mt-2 text-slate-500"><%= workout.time_cap %> Mins
             </p>
         </div>
         <% workout.rounds.each do |round| %>
-            <div class="p-6 text-center space-x-4"> <div class="underline"><%= round.number.zero? ? "Strength" : round.number%></div>
-              <div class="text-sm my-1"> <%= round.exercise.name %> </div>
+            <div class="p-6 text-center space-x-4"> <div class="underline text-text-dark-blue"><%= round.number.zero? ? "Strength" : "Round: #{round.number}"%></div>
+              <div class="text-sm my-1 text-text-blue"> <%= round.exercise.name %> </div>
               <% if round.reps.present? %>
-                <div class="text-sm"> <%= round.reps %> Reps</div>
+                <div class="text-sm text-text-blue"> <%= round.reps %> Reps</div>
               <% end %>
               <% if round.notes.present? %>
-                <div class="text-sm"> <%= round.notes %> </div>
+                <div class="text-sm text-text-blue"> <%= round.notes %> </div>
               <% end %>
             </div>
         <% end %>
