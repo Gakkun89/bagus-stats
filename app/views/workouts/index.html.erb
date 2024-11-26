@@ -1,4 +1,4 @@
 <%= turbo_frame_tag "workouts", src: workouts_path(format: :turbo_stream), loading: :lazy %>
-<% if @workouts.next_page %>
+<% if @search.blank? && @workouts.next_page %>
     <%= turbo_frame_tag "load_more", src: workouts_path(page: @workouts.next_page, format: :turbo_stream), loading: :lazy %>
 <% end %>
