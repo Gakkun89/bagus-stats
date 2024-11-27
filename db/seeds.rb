@@ -35,7 +35,8 @@ dates.each do |date|
   Workout.create!(
     date: DateTime.parse(date.to_s),
     variety: Workout.varieties.keys.sample,
-    time_cap: rand(8..25)
+    time_cap: rand(8..25),
+    round_number: rand(1..10)
   )
 end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_25_021209) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_27_002725) do
   create_table "exercises", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -74,6 +74,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_25_021209) do
     t.integer "time_cap"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "round_number"
   end
 
   add_foreign_key "results", "participants"

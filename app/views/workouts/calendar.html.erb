@@ -1,5 +1,5 @@
 <%= month_calendar(partial: 'calendars/calendar', events: @workouts) do |date, workouts| %>
-  <%= date %>
+  <%= date.day %>
   <% unless workouts.empty? %>
     <% workouts.each do |workout|  %>
       <%= workout.variety%>
