@@ -1,0 +1,72 @@
+<div>
+  <section class="pt-4 sm:pt-4 flex justify-center underline font-bold text-text-blue">
+    <%= @workout.date.strftime("%a - %-d %b") %>
+  </section>
+  <section class="py-3 sm:pt-2 flex justify-center text-text-blue">
+    <div class="justify-center">
+      <div class="mb-2"> Strength: </div>
+      <div>
+        <% if @strength %>
+          <%= @strength.exercise.name %> - <%= @strength.notes %>
+        <% else %>
+          No Strength
+        <% end %>
+      </div>
+    </div>
+  </section>
+  <hr class="w-48 h-1 mx-auto mt-2 mb-0 bg-gray-700 border-0 rounded">
+  <section class="py-4 sm:p-4 flex justify-center text-text-blue">
+      <div class="flex">
+        <div class="mx-8">
+            <span class="bg-cyan-700 text-white px-1 py-1 rounded transition-all ease-in duration-75 shadow-xl">
+              <%= Workout::FORMATTED_VARIETY[@workout.variety] %>
+            </span>
+            <div class="mt-2">
+              <%= @workout.round_number %> Rounds
+            </div>
+            <% if @workout.time_cap %>
+              <div class="mt-2">
+                <%= @workout.time_cap %> Min C/O
+              </div>
+            <% end %>
+        </div>
+        <div class="">
+          <% @workout.non_strength_rounds.each do |round| %>
+            <div class="mb-2">
+              <%= round.exercise.name %> - <%= "#{round.reps} reps" if round.reps %>  <%= "- #{round.notes}" if round.notes %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+  </section>
+  <hr class="w-48 h-1 mx-auto my-0 bg-gray-700 border-0 rounded md:my-2">
+  <section class="py-4 sm:p-4 flex justify-center text-text-blue">
+    <div class="flex">
+      <table class="border-separate border-spacing-2 divide-y divide-gray-200">
+        <thead>
+          <tr>
+            <th align="left">Name</th>
+            <th align="left">Result</th>
+            <th align="left">RX</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+      <% @workout.results.each do |result| %>
+          <tr>
+            <td><%= result.participant.name %> <%= "(DI)" if result.participant.drop_in %></td>
+            <td> <%= result.formatted_result ? result.formatted_result : result.notes %> </td>
+            <td>
+              <% if result.rx %>
+                <input disabled id="disabled-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+              <% else %>
+                <input disabled checked id="disabled-checked-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  </section>
+</div>

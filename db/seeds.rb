@@ -72,7 +72,7 @@ Workout.all.each do |workout|
     Result.create!(
       workout: workout,
       participant: participant,
-      result: (120..12000),
+      result: rand(120..12000),
       completed: [ true, false ].sample,
       rx: [ true, false ].sample
     )

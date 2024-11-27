@@ -5,11 +5,10 @@
     </div>
     <% unless workouts.empty? %>
       <% workouts.each do |workout|  %>
-        <%= link_to workout, class: "inline-flex items-center justify-center p-0.5 overflow-hidden text-xs font-medium rounded-lg group mt-2" do %>
-          <span class="text-white px-2 py-2 rounded transition-all ease-in duration-75 bg-gradient-to-r <%= workout.background_color %> shadow-xl">
+        <%= link_to workout, class: "bg-cyan-700 inline-flex items-center justify-center p-0.5 overflow-hidden text-xs font-medium rounded-lg group mt-2" do %>
+          <span class="text-white px-2 py-2 rounded transition-all ease-in duration-75 shadow-xl">
             <%= Workout::FORMATTED_VARIETY[workout.variety] %>
           </span>
-
         <% end %>
       <% end %>
     <% end %>
