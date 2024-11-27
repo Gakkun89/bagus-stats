@@ -6,7 +6,11 @@ class WorkoutsController < ApplicationController
   end
 
   def calendar
-    @date = Date.today.beginning_of_month
-    @workouts = Workout.where(date: @date..@date.end_of_month)
+    start_date = if params[:start_date]
+      params[:start_date].to_date.beginning_of_month
+    else
+      Date.today.beginning_of_month
+    end
+    @workouts = Workout.where(date: start_date..start_date.end_of_month)
   end
 end
