@@ -1,8 +1,17 @@
 <%= month_calendar(partial: 'calendars/calendar', events: @workouts) do |date, workouts| %>
-  <%= date.day %>
-  <% unless workouts.empty? %>
-    <% workouts.each do |workout|  %>
-      <%= workout.variety%>
+  <div class="<%= "#{workouts.empty? ? '' : 'lg:ml-6 lg:mt-6'}"%>">
+    <div class="underline underline-offset-4">
+      <%= date.day %>.
+    </div>
+    <% unless workouts.empty? %>
+      <% workouts.each do |workout|  %>
+        <%= link_to workout, class: "inline-flex items-center justify-center p-0.5 overflow-hidden text-xs font-medium rounded-lg group mt-2" do %>
+          <span class="text-white px-2 py-2 rounded transition-all ease-in duration-75 bg-gradient-to-r <%= workout.background_color %> shadow-xl">
+            <%= Workout::FORMATTED_VARIETY[workout.variety] %>
+          </span>
+
+        <% end %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 <% end %>

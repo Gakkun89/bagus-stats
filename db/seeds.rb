@@ -29,7 +29,7 @@ end
 
 puts "Seeding Workouts"
 
-dates = (Date.today.prev_month..Date.today).to_a
+dates = ((Date.today.beginning_of_month - 2.months)..(Date.today.end_of_month + 2.months)).to_a
 
 dates.each do |date|
   Workout.create!(
